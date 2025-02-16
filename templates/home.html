@@ -5,47 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House Price Prediction</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             color: #333;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-        
+
         .container {
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 30px;
+            padding: 10px;
             width: 100%;
-            max-width: 600px;
+            max-width: 380px;
+            height: 80vh; /* Reduced height to fit the screen */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
         }
 
         h1 {
             text-align: center;
             color: #007bff;
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: 1.3em;
+            margin-bottom: 10px;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 4px;
+            overflow-y: auto;
+            height: 100%;
+            justify-content: space-between;
         }
 
         input[type="text"] {
-            padding: 10px;
-            font-size: 1em;
+            padding: 5px;
+            font-size: 0.8em;
             border: 1px solid #ccc;
             border-radius: 5px;
             outline: none;
-            transition: border 0.3s;
+            width: 100%;
         }
 
         input[type="text"]:focus {
@@ -53,14 +65,14 @@
         }
 
         button {
-            padding: 12px;
+            padding: 8px;
             background-color: #007bff;
             color: white;
-            font-size: 1.1em;
+            font-size: 0.9em;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            width: 100%;
         }
 
         button:hover {
@@ -68,41 +80,33 @@
         }
 
         .prediction {
-            margin-top: 20px;
+            margin-top: 10px;
             text-align: center;
-            font-size: 1.2em;
+            font-size: 0.9em;
             font-weight: bold;
             color: #007bff;
+            overflow: hidden;
         }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #777;
-        }
-
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Boston House Price Prediction</h1>
 
-        <!-- Main input to receiving query to our ML -->
         <form action="{{ url_for('predict') }}" method="post">
-            <input type="text" name="CRIM" placeholder="CRIM" required="required"><br>
-            <input type="text" name="ZN" placeholder="ZN" required="required"><br>
-            <input type="text" name="INDUS" placeholder="INDUS" required="required"><br>
-            <input type="text" name="CHAS" placeholder="CHAS" required="required"><br>
-            <input type="text" name="NOX" placeholder="NOX" required="required"><br>
-            <input type="text" name="RM" placeholder="RM" required="required"><br>
-            <input type="text" name="AGE" placeholder="AGE" required="required"><br>
-            <input type="text" name="DIS" placeholder="DIS" required="required"><br>
-            <input type="text" name="RAD" placeholder="RAD" required="required"><br>
-            <input type="text" name="TAX" placeholder="TAX" required="required"><br>
-            <input type="text" name="PTRATIO" placeholder="PTRATIO" required="required"><br>
-            <input type="text" name="B" placeholder="B" required="required"><br>
-            <input type="text" name="LSTAT" placeholder="LSTAT" required="required"><br><br>
+            <input type="text" name="CRIM" placeholder="CRIM" required="required">
+            <input type="text" name="ZN" placeholder="ZN" required="required">
+            <input type="text" name="INDUS" placeholder="INDUS" required="required">
+            <input type="text" name="CHAS" placeholder="CHAS" required="required">
+            <input type="text" name="NOX" placeholder="NOX" required="required">
+            <input type="text" name="RM" placeholder="RM" required="required">
+            <input type="text" name="AGE" placeholder="AGE" required="required">
+            <input type="text" name="DIS" placeholder="DIS" required="required">
+            <input type="text" name="RAD" placeholder="RAD" required="required">
+            <input type="text" name="TAX" placeholder="TAX" required="required">
+            <input type="text" name="PTRATIO" placeholder="PTRATIO" required="required">
+            <input type="text" name="B" placeholder="B" required="required">
+            <input type="text" name="LSTAT" placeholder="LSTAT" required="required">
 
             <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
         </form>
@@ -110,10 +114,6 @@
         <div class="prediction">
             {{ prediction_text }}
         </div>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2025 House Price Prediction. All rights reserved.</p>
     </div>
 </body>
 </html>
